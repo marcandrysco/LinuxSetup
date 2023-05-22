@@ -1,0 +1,72 @@
+# add user
+useradd marc
+passwd marc
+
+# update xbps if needed
+xbps-install -Syu xbps
+
+# install vim - vi sucks
+xbps-install vim
+
+# enable ssh daemon
+ln -s /etc/sv/sshd /var/service
+
+# set root terminal to use bash (sh is not great)
+vim /etc/passwd
+
+# dbus, acpid is required for a lot of stuff
+xbps-install dbus
+ln -s /etc/sv/dbus /var/service
+ln -s /etc/sv/acpid /var/service
+
+# network time
+xbps-install ntp
+ln -s /etc/sv/ntpd /var/service
+
+# intel microcode (only needed on Intel devices)
+xbps-install intel-ucode
+
+
+## Applications ##
+
+# bluetooth
+xbps-install bluez libspa-bluetooth
+ln -s /etc/sv/bluetoothd /var/service
+
+# development (gcc, make, git, etc)
+xbps-install base-devel git
+
+# advanced linux power management 
+xbps-install tlp
+ln -s /etc/sv/tlp /var/service
+
+
+## GUI ##
+
+# install graphics and start
+xbps-install xorg lxqt sddm
+ln -s /etc/sv/sddm /var/service
+
+# barrier is used to share mouse and keyboard
+xbps-install barrier barrier-gui
+#FIXME cert issue
+
+# wifi
+xbps-install cmst
+
+# common programs
+xbps-install firefox vlc
+
+# bluetooth
+xbps-install blueman
+
+# audio thing
+xbps-install pavucontrol
+
+
+## Sound ##
+
+# install pipewire, session manager, alsa plugin, and volume controller
+xbps-install pipewire wireplumber alsa-pipewire pavucontrol
+
+
