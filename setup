@@ -27,6 +27,12 @@ ln -s /etc/sv/ntpd /var/service
 xbps-install intel-ucode
 
 
+## Extras ##
+
+# bash autocompletion
+xbps-install bash-completion
+
+
 ## Applications ##
 
 # bluetooth
@@ -53,6 +59,7 @@ xbps-install barrier barrier-gui
 
 # wifi
 xbps-install cmst
+usermod -a -G network <USER>
 
 # common programs
 xbps-install firefox vlc
@@ -62,6 +69,9 @@ xbps-install blueman
 
 # audio thing
 xbps-install pavucontrol
+
+# lots of fonts
+xbps-install noto-fonts-cjk noto-fonts-emoji noto-fonts-ttf noto-fonts-ttf-extra
 
 
 ## Sound ##
